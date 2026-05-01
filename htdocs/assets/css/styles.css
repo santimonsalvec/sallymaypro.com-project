@@ -469,6 +469,25 @@ body.is-low-data .overlay-layer {
     0 0 0 0.45rem color-mix(in oklab, var(--brand-white) 8%, transparent);
 }
 
+.course-explore-card-featured {
+  position: relative;
+  border-color: color-mix(in oklab, var(--accent) 34%, var(--glass-stroke) 66%);
+  box-shadow: 0 24px 70px color-mix(in oklab, var(--shadow) 32%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--brand-white) 18%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--accent) 12%, transparent);
+}
+
+.course-explore-card-featured::before {
+  content: "★";
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--brand-white);
+  text-shadow: 0 0 1rem color-mix(in oklab, var(--brand-white) 52%, transparent);
+}
+
 @media (max-width: 760px) {
   .professional-shell.professional-shell {
     padding: 1rem;

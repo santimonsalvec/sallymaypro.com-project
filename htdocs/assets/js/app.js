@@ -23,6 +23,7 @@ const CONFIG = {
     "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=80",
   APPOINTMENT_WHATSAPP_URL: "https://wa.me/573012046042",
   PRESENTIAL_COURSES_LINK: "#",
+  ONLINE_COURSES_LINK: "#",
   COURSE_LINK_1: "#",
   COURSE_LINK_2: "#",
   COURSE_LINK_3: "#",
@@ -57,13 +58,25 @@ const SECTION_ITEMS = [
     ],
   },
   {
-    type: "presentialCourses",
+    type: "courseExplore",
     menuLabel: "Presenciales",
     eyebrow: "Cursos Presenciales",
     title: "Explora la formacion presencial de Sally May Pro",
     description:
       "Entrenamientos practicos para aprender con acompanamiento directo, correccion en vivo y protocolos aplicables desde la primera sesion.",
     linkKey: "PRESENTIAL_COURSES_LINK",
+    cta: "Explorar presenciales",
+    featured: true,
+  },
+  {
+    type: "courseExplore",
+    menuLabel: "Online",
+    eyebrow: "Curso Online",
+    title: "Explora los cursos online de Sally May Pro",
+    description:
+      "Programas flexibles para estudiar a tu ritmo, reforzar tecnica y avanzar con una ruta clara desde cualquier lugar.",
+    linkKey: "ONLINE_COURSES_LINK",
+    cta: "Explorar online",
   },
   {
     type: "course",
@@ -206,14 +219,14 @@ const courseCard = (item) => `
     <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Ver Curso</a>
   </article>`;
 
-const presentialCoursesCard = (item) => `
-  <article class="glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
+const courseExploreCard = (item) => `
+  <article class="course-explore-card ${item.featured ? "course-explore-card-featured" : ""} glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
     <div class="flex flex-wrap items-center gap-3">
       ${courseModeTag(item.eyebrow)}
     </div>
     <h2 class="mt-4 font-display text-[clamp(2rem,8vw,3rem)] leading-tight">${item.title}</h2>
     <p class="mt-6 max-w-[65ch] leading-7 text-muted sm:leading-8">${item.description}</p>
-    <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Explorar cursos</a>
+    <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">${item.cta}</a>
   </article>`;
 
 const contactCard = (item) => `
@@ -233,7 +246,7 @@ const contactCard = (item) => `
 
 const renderCard = (item) => {
   if (item.type === "profile") return profileCard(item);
-  if (item.type === "presentialCourses") return presentialCoursesCard(item);
+  if (item.type === "courseExplore") return courseExploreCard(item);
   if (item.type === "contact") return contactCard(item);
   return courseCard(item);
 };
