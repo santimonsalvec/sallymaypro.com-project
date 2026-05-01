@@ -110,6 +110,22 @@ const SECTION_ITEMS = [
     ],
   },
   {
+    type: "testimonials",
+    menuLabel: "Testimonios",
+    eyebrow: "Lo que dicen nuestros estudiantes",
+    title: "Testimonios",
+    reviews: [
+      { name: "Valentina Rios", stars: 5, date: "Marzo 2025", comment: "Antes de tomar el curso de pigmentolog\u00eda no entend\u00eda por qu\u00e9 mis resultados no eran consistentes. Despu\u00e9s de Sally May Pro todo hizo clic: el color, la t\u00e9cnica, la seguridad. Ahora mis clientas vuelven y me refieren." },
+      { name: "Camila Torres", stars: 5, date: "Enero 2025", comment: "El m\u00e9todo May Shadow cambi\u00f3 completamente mi manera de trabajar. La correcci\u00f3n en vivo que hace la formadora durante el presencial no tiene precio. Sal\u00ed con una seguridad que no hab\u00eda tenido en ning\u00fan otro curso." },
+      { name: "Daniela Mu\u00f1oz", stars: 5, date: "Febrero 2025", comment: "Tom\u00e9 el curso online desde Bogot\u00e1 y la calidad del contenido super\u00f3 mis expectativas. Los videos son claros, el material de apoyo es completo y el grupo de estudiantes es una comunidad real. Totalmente recomendado." },
+      { name: "Sofia Herrera", stars: 5, date: "Abril 2025", comment: "Llevo 2 a\u00f1os en la industria y decid\u00ed hacer el perfeccionamiento May Lips. En un solo d\u00eda aprend\u00ed m\u00e1s que en meses de prueba y error. La metodolog\u00eda es muy pr\u00e1ctica y enfocada en resultados reales." },
+      { name: "Isabela Castro", stars: 5, date: "Mayo 2025", comment: "La inversi\u00f3n en el curso de dise\u00f1o de cejas avanzado se recuper\u00f3 en el primer mes. Mis clientas notan la diferencia inmediatamente. El nivel de detalle en la lectura facial me abri\u00f3 un mundo nuevo de posibilidades." },
+      { name: "Mariana Salazar", stars: 5, date: "Junio 2025", comment: "Hice el presencial de remoci\u00f3n l\u00e1ser y fue una experiencia incre\u00edble. La formadora domina el tema y lo explica de forma muy clara. Me fui con el protocolo claro y la confianza para implementarlo desde el primer d\u00eda." },
+      { name: "Natalia Vergara", stars: 5, date: "Julio 2025", comment: "Sally May Pro no solo ense\u00f1a t\u00e9cnica, ense\u00f1a a pensar como profesional. El curso de pigmentolog\u00eda avanzada me dio herramientas para resolver casos complejos que antes me generaban inseguridad. Una formaci\u00f3n de otro nivel." },
+      { name: "Alejandra Mora", stars: 5, date: "Agosto 2025", comment: "Lo que m\u00e1s me gust\u00f3 fue el acompa\u00f1amiento despu\u00e9s del curso. Las dudas que surgen en la pr\u00e1ctica se resuelven r\u00e1pido. Siento que tengo un respaldo real detr\u00e1s m\u00edo cuando trabajo con clientas." },
+    ],
+  },
+  {
     type: "contact",
     menuLabel: "Contacto",
     eyebrow: "Conecta con Sally May Pro",
@@ -248,6 +264,44 @@ const courseExploreCard = (item) => `
     <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">${item.cta}</a>
   </article>`;
 
+const testimonialsCard = (item) => {
+  const shuffled = [...item.reviews].sort(() => Math.random() - 0.5);
+  const stars = (n) => "\u2605".repeat(n);
+  const cards = shuffled
+    .map(
+      (r) => `
+      <div class="testimonial-item">
+        <div class="testimonial-header">
+          <span class="testimonial-name">${r.name}</span>
+          <span class="testimonial-meta">
+            <span class="testimonial-stars" aria-label="${r.stars} estrellas">${stars(r.stars)}</span>
+            <span class="testimonial-date">${r.date}</span>
+          </span>
+        </div>
+        <p class="testimonial-comment">${r.comment}</p>
+      </div>`
+    )
+    .join("");
+
+  return `
+    <article class="glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
+      <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
+      <h2 class="mt-3 font-display text-[clamp(2rem,8vw,3rem)] leading-tight">${item.title}</h2>
+      <div class="testimonial-shell" aria-live="polite">
+        <div class="testimonial-track" id="testimonialTrack">${cards}</div>
+      </div>
+      <div class="testimonial-controls" role="group" aria-label="Controles de testimonios">
+        <button class="testimonial-btn focus-ring" id="testimonialPrev" type="button" aria-label="Testimonio anterior">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 13L5 8l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="testimonial-counter" id="testimonialCounter">1 / ${shuffled.length}</span>
+        <button class="testimonial-btn focus-ring" id="testimonialNext" type="button" aria-label="Siguiente testimonio">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </article>`;
+};
+
 const contactCard = (item) => `
   <article class="glass mx-auto w-full max-w-5xl rounded-3xl p-6 shadow-glass sm:p-12">
     <p class="text-xs uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
@@ -268,6 +322,7 @@ const renderCard = (item) => {
   if (item.type === "courseExplore") return courseExploreCard(item);
   if (item.type === "services") return servicesCard(item);
   if (item.type === "pigments") return pigmentsCard(item);
+  if (item.type === "testimonials") return testimonialsCard(item);
   if (item.type === "contact") return contactCard(item);
   return courseCard(item);
 };
@@ -278,6 +333,7 @@ const MENU_ICONS = {
   "Online":       `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='1.5' y='2.5' width='13' height='9' rx='1.5' stroke='currentColor' stroke-width='1.3'/><path d='M6.5 5.5l3 2.5-3 2.5V5.5z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/><path d='M5.5 13.5h5' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/></svg>`,
   "Servicios":    `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M11 5l1.4-1.4M3.6 12.4l1.4-1.4' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/><circle cx='8' cy='8' r='2' stroke='currentColor' stroke-width='1.3'/></svg>`,
   "Pigmentos":    `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8 2C8 2 3.5 7 3.5 10a4.5 4.5 0 009 0C12.5 7 8 2 8 2z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/><path d='M6 10.5a2 2 0 002 1.5' stroke='currentColor' stroke-width='1.1' stroke-linecap='round'/></svg>`,
+  "Testimonios":  `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M3 4.5h10M3 7.5h7M3 10.5h5' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/></svg>`,
   "Contacto":     `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M2 3.5A1.5 1.5 0 013.5 2h9A1.5 1.5 0 0114 3.5v7A1.5 1.5 0 0112.5 12H9l-3 2.5V12H3.5A1.5 1.5 0 012 10.5v-7z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/></svg>`,
 };
 
@@ -890,3 +946,65 @@ globalThis.addEventListener(
   { passive: true }
 );
 globalThis.addEventListener("load", initializeExperience, { passive: true });
+
+// ── Testimonials dissolve cycle ────────────────────────────────────────────
+const initTestimonials = () => {
+  const track = document.getElementById("testimonialTrack");
+  const prevBtn = document.getElementById("testimonialPrev");
+  const nextBtn = document.getElementById("testimonialNext");
+  const counter = document.getElementById("testimonialCounter");
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const items = Array.from(track.querySelectorAll(".testimonial-item"));
+  const total = items.length;
+  let current = 0;
+  let autoTimer = null;
+  let isChanging = false;
+  const DURATION = 9000;
+  const PARTICLE_DELAY = 560;
+  const NEXT_APPEAR_DELAY = 100;
+  const TRANSITION_UNLOCK_DELAY = 1300;
+
+  const goTo = (index) => {
+    const target = (index + total) % total;
+    if (isChanging || target === current) return;
+
+    const prev = current;
+    current = target;
+    isChanging = true;
+
+    const outItem = items[prev];
+    const inItem = items[current];
+
+    // Fade first; particles appear as the comment reaches full transparency.
+    outItem.classList.remove("visible-item");
+
+    setTimeout(() => {
+      dissolveCard(outItem);
+    }, PARTICLE_DELAY);
+
+    setTimeout(() => {
+      inItem.classList.add("visible-item");
+      materializeCard(inItem);
+      counter.textContent = `${current + 1} / ${total}`;
+    }, PARTICLE_DELAY + NEXT_APPEAR_DELAY);
+
+    setTimeout(() => {
+      isChanging = false;
+    }, TRANSITION_UNLOCK_DELAY);
+  };
+
+  const startAuto = () => {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), DURATION);
+  };
+
+  // Init: show first item only
+  items[0].classList.add("visible-item");
+
+  nextBtn.addEventListener("click", () => { goTo(current + 1); startAuto(); });
+  prevBtn.addEventListener("click", () => { goTo(current - 1); startAuto(); });
+  startAuto();
+};
+
+initTestimonials();

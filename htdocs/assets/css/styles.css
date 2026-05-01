@@ -627,6 +627,108 @@ body.is-low-data .overlay-layer {
   outline-offset: 3px;
 }
 
+/* ── Testimonials ─────────────────────────────────────────────────────────── */
+.testimonial-shell {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.testimonial-track {
+  display: grid;
+}
+
+.testimonial-item {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 650ms;
+}
+
+.testimonial-item.visible-item {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0s;
+}
+
+.testimonial-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.testimonial-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.testimonial-stars {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: oklch(0.88 0.12 72);
+}
+
+.testimonial-date {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.testimonial-comment {
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--text-muted);
+  max-width: min(62ch, 100%);
+}
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.testimonial-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-stroke);
+  background: color-mix(in oklab, var(--glass-fill) 80%, transparent);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 300ms cubic-bezier(0.16, 1, 0.3, 1), color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-btn:hover {
+  background: color-mix(in oklab, var(--glass-fill) 56%, color-mix(in oklab, var(--accent) 16%, transparent) 44%);
+  color: var(--text-primary);
+}
+
+.testimonial-counter {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
