@@ -469,6 +469,49 @@ body.is-low-data .overlay-layer {
     0 0 0 0.45rem color-mix(in oklab, var(--brand-white) 8%, transparent);
 }
 
+.pigment-countries {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.pigment-country-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 1rem;
+  border: 1px solid var(--glass-stroke);
+  background: color-mix(in oklab, var(--glass-fill) 80%, transparent);
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-align: center;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px color-mix(in oklab, var(--shadow) 18%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--brand-white) 12%, transparent);
+  transition: background 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pigment-country-btn:hover {
+  background: color-mix(in oklab, var(--glass-fill) 56%, color-mix(in oklab, var(--accent-strong) 18%, transparent) 44%);
+  border-color: color-mix(in oklab, var(--accent-strong) 42%, var(--glass-stroke) 58%);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 560px) {
+  .pigment-countries {
+    grid-template-columns: 1fr;
+  }
+}
+
 .service-badges {
   display: flex;
   flex-wrap: wrap;

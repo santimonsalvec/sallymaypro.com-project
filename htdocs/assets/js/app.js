@@ -25,6 +25,9 @@ const CONFIG = {
   PRESENTIAL_COURSES_LINK: "#",
   ONLINE_COURSES_LINK: "#",
   SERVICES_LINK: "#",
+  PIGMENTS_WHATSAPP_CO: "https://wa.me/573012046042",
+  PIGMENTS_WHATSAPP_US: "https://wa.me/573012046042",
+  PIGMENTS_WHATSAPP_ES: "https://wa.me/573012046042",
   COURSE_LINK_1: "#",
   COURSE_LINK_2: "#",
   COURSE_LINK_3: "#",
@@ -92,6 +95,18 @@ const SECTION_ITEMS = [
       "Remocion laser",
       "Hollywood Peel",
       "Depilacion laser",
+    ],
+  },
+  {
+    type: "pigments",
+    menuLabel: "Pigmentos",
+    eyebrow: "Tienda de Pigmentos",
+    title: "Pigmentos profesionales Sally May Pro",
+    description: "Consigue los pigmentos que usan nuestras expertas. Disponibles en Colombia, Estados Unidos y Espana. Contacta al equipo de tu pais y haz tu pedido directamente por WhatsApp.",
+    countries: [
+      { label: "Colombia", whatsappKey: "PIGMENTS_WHATSAPP_CO" },
+      { label: "Estados Unidos", whatsappKey: "PIGMENTS_WHATSAPP_US" },
+      { label: "España", whatsappKey: "PIGMENTS_WHATSAPP_ES" },
     ],
   },
   {
@@ -235,6 +250,22 @@ const courseCard = (item) => `
     <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Ver Curso</a>
   </article>`;
 
+const pigmentsCard = (item) => `
+  <article class="glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
+    <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
+    <h2 class="mt-4 font-display text-[clamp(2rem,8vw,3rem)] leading-tight">${item.title}</h2>
+    <p class="mt-5 max-w-[65ch] leading-7 text-muted sm:leading-8">${item.description}</p>
+    <div class="pigment-countries">
+      ${item.countries
+        .map((c) => {
+          const message = encodeURIComponent(`Hola, quiero informacion sobre los pigmentos Sally May Pro.`);
+          const href = `${CONFIG[c.whatsappKey]}?text=${message}`;
+          return `<a href="${href}" class="pigment-country-btn focus-ring" target="_blank" rel="noopener noreferrer">${c.label}</a>`;
+        })
+        .join("")}
+    </div>
+  </article>`;
+
 const servicesCard = (item) => `
   <article class="services-card glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
     <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
@@ -275,6 +306,7 @@ const renderCard = (item) => {
   if (item.type === "profile") return profileCard(item);
   if (item.type === "courseExplore") return courseExploreCard(item);
   if (item.type === "services") return servicesCard(item);
+  if (item.type === "pigments") return pigmentsCard(item);
   if (item.type === "contact") return contactCard(item);
   return courseCard(item);
 };
