@@ -110,45 +110,6 @@ const SECTION_ITEMS = [
     ],
   },
   {
-    type: "course",
-    menuLabel: "May Brows",
-    eyebrow: "Curso Online",
-    access: "1 ano de acceso",
-    title: "Metodo MAY-BROWS",
-    description:
-      "Metodo especializado en diseno, estructura y ejecucion de cejas premium. Incluye criterios de simetria, neutralizacion estrategica y fidelizacion de clientas.",
-    linkKey: "COURSE_LINK_2",
-  },
-  {
-    type: "course",
-    menuLabel: "Medellin",
-    eyebrow: "Curso Presencial",
-    title: "Curso presencial Medellin",
-    description:
-      "Inmersion tecnica intensiva con acompanamiento directo, correccion en vivo y protocolo de ejecucion para lograr resultados consistentes desde la primera practica guiada.",
-    linkKey: "COURSE_LINK_3",
-  },
-  {
-    type: "course",
-    menuLabel: "May Lips",
-    eyebrow: "Curso Online",
-    access: "1 ano de acceso",
-    title: "Metodo MAY-LIPS (Neutralizacion full color)",
-    description:
-      "Formacion avanzada para neutralizar labios oscuros y construir tonos limpios, estables y armonicos en multiples fototipos, con enfoque en seguridad del tejido.",
-    linkKey: "COURSE_LINK_4",
-  },
-  {
-    type: "course",
-    menuLabel: "Cejas Pro",
-    eyebrow: "Curso Online",
-    access: "6 meses de acceso",
-    title: "Diseno de cejas pro a mano alzada",
-    description:
-      "Entrenamiento especifico en lectura facial y trazado manual para construir disenos de alto impacto visual, con criterio anatomico y precision comercial.",
-    linkKey: "COURSE_LINK_5",
-  },
-  {
     type: "contact",
     menuLabel: "Contacto",
     eyebrow: "Conecta con Sally May Pro",
@@ -311,6 +272,15 @@ const renderCard = (item) => {
   return courseCard(item);
 };
 
+const MENU_ICONS = {
+  "Perfil 1":     `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='8' cy='5.5' r='2.5' stroke='currentColor' stroke-width='1.3'/><path d='M2.5 13.5c0-2.761 2.462-5 5.5-5s5.5 2.239 5.5 5' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/></svg>`,
+  "Presenciales": `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8 3L1 6.5l7 3.5 7-3.5L8 3z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/><path d='M4 8.5v3.5c0 1 1.791 2 4 2s4-1 4-2V8.5' stroke='currentColor' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/></svg>`,
+  "Online":       `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='1.5' y='2.5' width='13' height='9' rx='1.5' stroke='currentColor' stroke-width='1.3'/><path d='M6.5 5.5l3 2.5-3 2.5V5.5z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/><path d='M5.5 13.5h5' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/></svg>`,
+  "Servicios":    `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M11 5l1.4-1.4M3.6 12.4l1.4-1.4' stroke='currentColor' stroke-width='1.3' stroke-linecap='round'/><circle cx='8' cy='8' r='2' stroke='currentColor' stroke-width='1.3'/></svg>`,
+  "Pigmentos":    `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8 2C8 2 3.5 7 3.5 10a4.5 4.5 0 009 0C12.5 7 8 2 8 2z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/><path d='M6 10.5a2 2 0 002 1.5' stroke='currentColor' stroke-width='1.1' stroke-linecap='round'/></svg>`,
+  "Contacto":     `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M2 3.5A1.5 1.5 0 013.5 2h9A1.5 1.5 0 0114 3.5v7A1.5 1.5 0 0112.5 12H9l-3 2.5V12H3.5A1.5 1.5 0 012 10.5v-7z' stroke='currentColor' stroke-width='1.3' stroke-linejoin='round'/></svg>`,
+};
+
 const renderSections = () => {
   const scrollRoot = document.getElementById("scrollRoot");
   const sectionMenu = document.getElementById("sectionMenu");
@@ -322,7 +292,7 @@ const renderSections = () => {
 
   sectionMenu.innerHTML = SECTION_ITEMS.map(
     (item, index) =>
-      `<button class="section-menu-button focus-ring" type="button" data-index="${index}" data-label="${item.menuLabel}" aria-label="Ir a ${item.menuLabel}"></button>`
+      `<button class="section-menu-button focus-ring" type="button" data-index="${index}" data-label="${item.menuLabel}" aria-label="Ir a ${item.menuLabel}">${MENU_ICONS[item.menuLabel] || ""}</button>`
   ).join("");
 };
 
