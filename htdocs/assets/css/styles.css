@@ -430,6 +430,102 @@ body.is-low-data .overlay-layer {
   -webkit-backdrop-filter: blur(18px);
 }
 
+.professional-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.professional-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  background: color-mix(in oklab, var(--glass-fill) 56%, transparent);
+}
+
+.professional-card h2 {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.professional-card .cta {
+  justify-content: center;
+}
+
+.panel-card .professional-avatar {
+  display: block;
+  width: clamp(6.75rem, 10vw, 9rem) !important;
+  height: clamp(6.75rem, 10vw, 9rem) !important;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--brand-white) 42%, transparent);
+  object-fit: cover;
+  box-shadow: 0 18px 48px color-mix(in oklab, var(--shadow) 34%, transparent),
+    0 0 0 0.45rem color-mix(in oklab, var(--brand-white) 8%, transparent);
+}
+
+@media (max-width: 760px) {
+  .professional-shell.professional-shell {
+    padding: 1rem;
+  }
+
+  .professional-title {
+    font-size: clamp(1.65rem, 7vw, 2.2rem);
+    line-height: 1.05;
+  }
+
+  .professional-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem !important;
+  }
+
+  .professional-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "avatar name button";
+    column-gap: 0.75rem;
+    row-gap: 0;
+    align-items: center;
+    padding: 0.7rem;
+    border-radius: 1.05rem;
+    text-align: left;
+  }
+
+  .panel-card .professional-avatar {
+    grid-area: avatar;
+    justify-self: center;
+    width: clamp(3.25rem, 13vw, 4rem) !important;
+    height: clamp(3.25rem, 13vw, 4rem) !important;
+    box-shadow: 0 12px 30px color-mix(in oklab, var(--shadow) 28%, transparent),
+      0 0 0 0.3rem color-mix(in oklab, var(--brand-white) 8%, transparent);
+  }
+
+  .professional-card h2 {
+    grid-area: name;
+    justify-self: start;
+    margin-top: 0;
+    font-size: clamp(1.08rem, 4.6vw, 1.35rem);
+    line-height: 1.05;
+    text-align: left;
+  }
+
+  .professional-card .cta {
+    grid-area: button;
+    width: auto;
+    min-height: 2.65rem;
+    margin-top: 0;
+    justify-self: end;
+    padding: 0.75rem 0.85rem;
+    white-space: nowrap;
+  }
+}
+
 .cta {
   background: linear-gradient(
     140deg,

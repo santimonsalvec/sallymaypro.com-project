@@ -19,6 +19,9 @@ const CONFIG = {
     "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1200&q=80",
   PROFILE_2_IMAGE:
     "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=80",
+  PROFILE_3_IMAGE:
+    "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=80",
+  APPOINTMENT_WHATSAPP_URL: "https://wa.me/573012046042",
   COURSE_LINK_1: "#",
   COURSE_LINK_2: "#",
   COURSE_LINK_3: "#",
@@ -33,15 +36,24 @@ const SECTION_ITEMS = [
   {
     type: "profile",
     menuLabel: "Perfil 1",
-    eyebrow: "Perfil Profesional",
-    title: "Ana Maria MAY",
-    description:
-      "Especialista en cejas y labios con enfoque de precision clinica, protocolo higienico estricto y resultados hiper naturales. Su metodo combina arte, anatomia y pigmentologia avanzada.",
-    imageKey: "PROFILE_1_IMAGE",
-    imageAlt: "Profesional 1 en estudio de micropigmentacion",
-    imageLoading: "eager",
-    imageFirst: false,
-    tags: ["Micropigmentacion Premium", "Pigmentologia Avanzada", "Resultados Naturales"],
+    eyebrow: "Especialistas Sally May Pro",
+    professionals: [
+      {
+        name: "Ana Maria MAY",
+        imageKey: "PROFILE_1_IMAGE",
+        imageAlt: "Ana Maria MAY especialista en micropigmentacion",
+      },
+      {
+        name: "Laura MAY",
+        imageKey: "PROFILE_2_IMAGE",
+        imageAlt: "Laura MAY especialista y formadora en pigmentologia",
+      },
+      {
+        name: "Sally MAY",
+        imageKey: "PROFILE_3_IMAGE",
+        imageAlt: "Sally MAY especialista en estetica avanzada",
+      },
+    ],
   },
   {
     type: "profile",
@@ -119,6 +131,33 @@ const SECTION_ITEMS = [
 ];
 
 const profileCard = (item) => {
+  if (item.professionals) {
+    return `
+      <article class="professional-shell glass mx-auto w-full max-w-5xl rounded-3xl p-5 shadow-glass sm:p-10 lg:p-14">
+        <h1 class="professional-title text-center font-display text-4xl leading-tight sm:text-5xl">${item.eyebrow}</h1>
+        <div class="professional-grid mt-8">
+          ${item.professionals
+            .map((professional) => {
+              const message = encodeURIComponent(`Hola, deseo solicitar una cita con ${professional.name}.`);
+              const href = `${CONFIG.APPOINTMENT_WHATSAPP_URL}?text=${message}`;
+
+              return `
+                <section class="professional-card">
+                  <img
+                    src="${CONFIG[professional.imageKey]}"
+                    alt="${professional.imageAlt}"
+                    class="professional-avatar h-28 w-28 rounded-full object-cover sm:h-32 sm:w-32 lg:h-36 lg:w-36"
+                    loading="${professional.imageKey === "PROFILE_1_IMAGE" ? "eager" : "lazy"}"
+                  />
+                  <h2 class="mt-5 font-display text-2xl leading-tight sm:text-3xl">${professional.name}</h2>
+                  <a href="${href}" class="cta focus-ring mt-5 inline-flex rounded-xl px-5 py-3 text-xs font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout" target="_blank" rel="noopener noreferrer">Solicitar cita</a>
+                </section>`;
+            })
+            .join("")}
+        </div>
+      </article>`;
+  }
+
   const image = `
     <img
       src="${CONFIG[item.imageKey]}"
