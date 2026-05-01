@@ -24,6 +24,7 @@ const CONFIG = {
   APPOINTMENT_WHATSAPP_URL: "https://wa.me/573012046042",
   PRESENTIAL_COURSES_LINK: "#",
   ONLINE_COURSES_LINK: "#",
+  SERVICES_LINK: "#",
   COURSE_LINK_1: "#",
   COURSE_LINK_2: "#",
   COURSE_LINK_3: "#",
@@ -77,6 +78,21 @@ const SECTION_ITEMS = [
       "Programas flexibles para estudiar a tu ritmo, reforzar tecnica y avanzar con una ruta clara desde cualquier lugar.",
     linkKey: "ONLINE_COURSES_LINK",
     cta: "Explorar online",
+  },
+  {
+    type: "services",
+    menuLabel: "Servicios",
+    eyebrow: "Servicios Disponibles",
+    title: "Tratamientos y servicios profesionales",
+    description: "Ademas de la formacion, Sally May Pro ofrece servicios especializados de micropigmentacion, estetica avanzada y tratamientos de alta precision a cargo de nuestras expertas.",
+    linkKey: "SERVICES_LINK",
+    cta: "Explorar servicios",
+    services: [
+      "Micropigmentacion labial / cejas",
+      "Remocion laser",
+      "Hollywood Peel",
+      "Depilacion laser",
+    ],
   },
   {
     type: "course",
@@ -219,6 +235,17 @@ const courseCard = (item) => `
     <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Ver Curso</a>
   </article>`;
 
+const servicesCard = (item) => `
+  <article class="services-card glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
+    <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
+    <h2 class="mt-4 font-display text-[clamp(2rem,8vw,3rem)] leading-tight">${item.title}</h2>
+    <p class="mt-5 max-w-[65ch] leading-7 text-muted sm:leading-8">${item.description}</p>
+    <div class="service-badges">
+      ${item.services.map((s) => `<span class="service-badge">${s}</span>`).join("")}
+    </div>
+    <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">${item.cta}</a>
+  </article>`;
+
 const courseExploreCard = (item) => `
   <article class="course-explore-card ${item.featured ? "course-explore-card-featured" : ""} glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
     <div class="flex flex-wrap items-center gap-3">
@@ -247,6 +274,7 @@ const contactCard = (item) => `
 const renderCard = (item) => {
   if (item.type === "profile") return profileCard(item);
   if (item.type === "courseExplore") return courseExploreCard(item);
+  if (item.type === "services") return servicesCard(item);
   if (item.type === "contact") return contactCard(item);
   return courseCard(item);
 };

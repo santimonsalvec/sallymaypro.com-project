@@ -469,6 +469,30 @@ body.is-low-data .overlay-layer {
     0 0 0 0.45rem color-mix(in oklab, var(--brand-white) 8%, transparent);
 }
 
+.service-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent-strong) 38%, var(--glass-stroke) 62%);
+  background: color-mix(in oklab, var(--glass-fill) 52%, color-mix(in oklab, var(--brand-plum) 30%, transparent) 48%);
+  padding: 0.48rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px color-mix(in oklab, var(--shadow) 18%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--brand-white) 14%, transparent);
+}
+
 .course-explore-card-featured {
   position: relative;
   border-color: color-mix(in oklab, var(--accent) 34%, var(--glass-stroke) 66%);
