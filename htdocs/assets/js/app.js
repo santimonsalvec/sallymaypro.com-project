@@ -22,6 +22,7 @@ const CONFIG = {
   PROFILE_3_IMAGE:
     "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=80",
   APPOINTMENT_WHATSAPP_URL: "https://wa.me/573012046042",
+  PRESENTIAL_COURSES_LINK: "#",
   COURSE_LINK_1: "#",
   COURSE_LINK_2: "#",
   COURSE_LINK_3: "#",
@@ -56,26 +57,13 @@ const SECTION_ITEMS = [
     ],
   },
   {
-    type: "profile",
-    menuLabel: "Perfil 2",
-    eyebrow: "Perfil Profesional",
-    title: "Laura MAY",
+    type: "presentialCourses",
+    menuLabel: "Presenciales",
+    eyebrow: "Cursos Presenciales",
+    title: "Explora la formacion presencial de Sally May Pro",
     description:
-      "Formadora internacional en pigmentologia con foco en tecnica, seguridad y escalabilidad del negocio. Lidera procesos de acompanamiento para transformar principiantes en profesionales de alto nivel.",
-    imageKey: "PROFILE_2_IMAGE",
-    imageAlt: "Profesional 2 guiando sesion de formacion",
-    imageLoading: "lazy",
-    imageFirst: false,
-    tags: ["Precision Clinica", "Docencia Premium", "Resultados Reales"],
-  },
-  {
-    type: "course",
-    menuLabel: "Pigmentologia",
-    eyebrow: "Curso Online",
-    title: "De 0 a experto en Pigmentologia",
-    description:
-      "Ruta integral para dominar bases, tecnica y criterio profesional en cejas y labios. Aprendes a ejecutar protocolos seguros con un sistema claro, medible y escalable.",
-    linkKey: "COURSE_LINK_1",
+      "Entrenamientos practicos para aprender con acompanamiento directo, correccion en vivo y protocolos aplicables desde la primera sesion.",
+    linkKey: "PRESENTIAL_COURSES_LINK",
   },
   {
     type: "course",
@@ -119,7 +107,7 @@ const SECTION_ITEMS = [
   {
     type: "contact",
     menuLabel: "Contacto",
-    eyebrow: "Conecta con MAY Studio",
+    eyebrow: "Conecta con Sally May Pro",
     title: "Contacto y redes",
     description: "Agenda tu siguiente paso profesional o descubre contenido educativo en nuestras plataformas oficiales.",
     links: [
@@ -218,6 +206,16 @@ const courseCard = (item) => `
     <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Ver Curso</a>
   </article>`;
 
+const presentialCoursesCard = (item) => `
+  <article class="glass mx-auto w-full max-w-4xl rounded-3xl p-6 shadow-glass sm:p-12">
+    <div class="flex flex-wrap items-center gap-3">
+      ${courseModeTag(item.eyebrow)}
+    </div>
+    <h2 class="mt-4 font-display text-[clamp(2rem,8vw,3rem)] leading-tight">${item.title}</h2>
+    <p class="mt-6 max-w-[65ch] leading-7 text-muted sm:leading-8">${item.description}</p>
+    <a href="${CONFIG[item.linkKey]}" class="cta focus-ring mt-8 inline-flex rounded-xl px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-all duration-500 ease-expoout">Explorar cursos</a>
+  </article>`;
+
 const contactCard = (item) => `
   <article class="glass mx-auto w-full max-w-5xl rounded-3xl p-6 shadow-glass sm:p-12">
     <p class="text-xs uppercase tracking-[0.18em] text-muted">${item.eyebrow}</p>
@@ -235,6 +233,7 @@ const contactCard = (item) => `
 
 const renderCard = (item) => {
   if (item.type === "profile") return profileCard(item);
+  if (item.type === "presentialCourses") return presentialCoursesCard(item);
   if (item.type === "contact") return contactCard(item);
   return courseCard(item);
 };
