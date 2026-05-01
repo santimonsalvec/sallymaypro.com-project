@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAY Studio | Micropigmentacion y Formacion</title>
+    <meta
+      name="description"
+      content="Landing inmersiva de micropigmentacion y formacion profesional con experiencia premium y narrativa visual sincronizada al scroll."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="font-sans antialiased">
+    <output id="pageLoader" class="page-loader" aria-live="polite" aria-atomic="true">
+      <span class="page-loader-panel">
+        <span class="page-loader-mark" aria-hidden="true"><span></span></span>
+        <span class="page-loader-kicker">MAY Studio</span>
+        <span class="page-loader-text">Cargando <span id="loaderWord">estilo</span></span>
+      </span>
+    </output>
+
+    <video
+      id="bgVideo"
+      class="video-layer"
+      muted
+      playsinline
+      preload="metadata"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <track kind="captions" srclang="es" label="Video de fondo" src="data:text/vtt,WEBVTT" default />
+    </video>
+
+    <img id="frameLayer" class="frame-layer hidden" alt="" aria-hidden="true" />
+    <div class="overlay-layer" aria-hidden="true"></div>
+    <canvas id="particleCanvas" class="particle-layer"></canvas>
+    <button id="scrollTopButton" class="scroll-top focus-ring" type="button" aria-label="Volver al inicio">
+      <span aria-hidden="true">^</span>
+      Inicio
+    </button>
+    <nav id="sectionMenu" class="section-menu" aria-label="Navegacion por secciones"></nav>
+
+    <main id="scrollRoot" class="snap-shell relative z-10"></main>
+
+    <script src="./assets/js/app.js"></script>
+
+    <!-- Configuracion rapida -->
+    <!-- VIDEO_SRC -->
+    <!-- FRAME_PATH_PATTERN -->
+    <!-- TOTAL_FRAMES -->
+    <!-- PROFILE_1_IMAGE -->
+    <!-- PROFILE_2_IMAGE -->
+    <!-- COURSE_LINK_1 -->
+    <!-- COURSE_LINK_2 -->
+    <!-- COURSE_LINK_3 -->
+    <!-- COURSE_LINK_4 -->
+    <!-- COURSE_LINK_5 -->
+    <!-- WHATSAPP_URL -->
+    <!-- INSTAGRAM_URL -->
+    <!-- TIKTOK_URL -->
+  </body>
+</html>
